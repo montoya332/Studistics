@@ -1,0 +1,173 @@
+<br>
+<div class="container-fluid">
+  <div class=" row">
+    <div class="well well-sm col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">
+         <a ng-click='refreshDataButton()' class="btn btn-default btn-sm pull-left"><i class="fa fa-refresh">&nbsp;Refresh</i></a>
+         <a ng-click='downloadButton()' class="btn btn-default btn-sm pull-right"><i class="fa fa-download">&nbsp;Download</i></a>
+         <br>
+         <h4><i class="fa  fa-book"></i>&nbsp; Sample View of Weekly Reports </h4> 
+       </div>
+       <div class="panel-body">
+        <div google-chart chart="chartObject" style="{{cssStyle}}" custom-select="handleSelect"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class=" row">
+   <div class="col-xs-4 col-sm-4 col-md-2 col-lg-1">
+    <div class="panel panel-default ">
+      <div class="panel-heading text-center">Students</div>
+      <div class="panel-body">
+        <h5 class="text-center"><i class="fa fa-user"></i>
+          <br><br>200</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-1">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">Boys</div>
+        <div class="panel-body">
+         <h5 class="text-center"><i class="fa fa-male"></i>
+          <br><br>40%</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-1">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">Girls</div>
+        <div class="panel-body">
+         <h5 class="text-center"><i class="fa fa-female"></i>
+          <br><br>60%</h5>
+        </div>
+      </div>
+    </div>
+    <div class="hidden-xs col-sm-2 col-md-2 col-lg-1 col-lg-offset-1">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">Hispanic</div>
+        <div class="panel-body">
+         <h5 class="text-center"><i class="fa fa-users"></i>
+          <br><br>80%</h5>
+        </div>
+      </div>
+    </div>
+    <div class="hidden-xs col-sm-2 col-md-2 col-lg-1">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">Black</div>
+        <div class="panel-body">
+         <h5 class="text-center"><i class="fa fa-users"></i>
+          <br><br>80%</h5>
+        </div>
+      </div>
+    </div>
+    <div class="hidden-xs col-sm-2 col-md-2 col-lg-1">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">Asian</div>
+        <div class="panel-body">
+         <h5 class="text-center"><i class="fa fa-users"></i>
+          <br><br>80%</h5>
+        </div>
+      </div>
+    </div>
+    <div class="hidden-xs col-sm-2 col-md-2 col-lg-1">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">Other</div>
+        <div class="panel-body">
+         <h5 class="text-center"><i class="fa fa-users"></i>
+          <br><br>80%</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 col-md-offset-1">
+      <div class="panel panel-default ">
+        <div class="panel-heading text-center">Average </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{totalCheckedIn}}</span>
+            <i class="fa fa-check-square-o">&nbsp;Checked-In</i>
+
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{totalCheckedOut}}</span>
+
+            <i class="fa fa-check-square-o"></i>&nbsp;Checked-Out
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+
+    <div class="well well-sm row">
+    <div class=" col-lg-12">
+      <table class="table table-striped  ">
+        <thead>
+          <tr >
+            <th class="text-center">Student</th>
+            <th class="text-center">&nbsp;</th>
+            <th class="text-center">Grade</th>
+            <th class="text-center">Atendance</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr ng-repeat="student in students | orderBy: '-checkinTime'">
+            <td class="">{{student.lastName}},</td>
+            <td class="">{{student.firstName}}</td>
+            <td class="text-center">9th</td>
+            <td class="text-center">60%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class=" row">
+    <a ng-click='refreshDataButton()' class="btn btn-default btn-sm pull-left"><i class="fa fa-refresh"></i>&nbsp;Refresh</a>
+    <a ng-click='downloadButton()' class="btn btn-default btn-sm pull-right"><i class="fa fa-download"></i>&nbsp;Download</a>
+    <h4 class="text-center"><i class="fa  fa-book"></i>&nbsp; Sample View of Weekly Reports </h4>
+  </div> -->
+
+
+  <!-- </div> -->
+
+
+<!-- 
+  <div class="container-fluid"> -->
+
+  <!-- <div class=" row">
+    <h3 class="text-center"> Woodside High School  </h3>          
+  </div> -->
+
+
+  <!-- Start -->
+
+
+<!--   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <span class="badge">{{totalCheckedIn}}</span>
+        Checked-In Students
+
+      </li>
+      <li class="list-group-item">
+        <span class="badge">{{totalCheckedOut}}</span>
+        Checked-Out Students
+      </li>
+      
+    </ul> </div>-->
+
+
+
+
+    <!-- End -->
+
+
+
+
+
+

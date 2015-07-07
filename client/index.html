@@ -1,0 +1,32 @@
+<head>
+<!--   <meta name="viewport" content="width=device-width, initial-scale=1"> -->  
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <base href="/">
+</head>
+<body >
+  <div ng-app="studentTracker" >
+  <div id="wrapper">
+    <div ng-include="'client/information/navbar.ng.html'"></div> 
+      
+      <br><br>
+
+
+      <div layout="column"  class="content-wrapper" id="primary-col" >
+        <div class="row" >
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <br>
+            <div ui-view ><!-- class="container-fluid" -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+
+
+

@@ -1,0 +1,133 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavbarCtrl">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button ng-show="loginedIn" type="button" class="pull-left navbar-toggle-left" data-toggle="offcanvas" >
+				<span>&nbsp;<i class="fa fa-bars"></i>&nbsp;</span>
+			</button>
+			
+			<a class="navbar-brand" href="/">&nbsp;
+			<img src="img/studisticslogoV2.png" height="39"></a>
+
+			<button type="button" ng-click="loginModal()" ng-show="!loginedIn" class="navbar-toggle collapsed btn-default">
+        		<span color="white">Sign in</span>
+      </button>
+      <button type="button" ng-click="logout()" ng-show="loginedIn" class="navbar-toggle collapsed ">
+        		<span color="white">Sign Out</span>
+      </button>
+		</div>
+		<!-- md - lg screens -->
+		<div class="navbar-form navbar-right hidden-xs" ng-show="!loginedIn" >
+        <button ng-click="loginModal()" class="btn btn-default">Sign in</button>
+      </div>
+      <div class="navbar-form navbar-right hidden-xs" ng-show="loginedIn" >
+        <button ng-click="logout()" class="btn btn-default">Sign Out</button>
+      </div>
+</div>
+</nav>
+
+<div id="sidebar-wrapper">
+	<ul class="sidebar-nav">
+		<div class="container-fluid">
+		<br><br><br>
+
+    <div class=" profile">
+		
+			<div class="">
+				<!-- SIDEBAR USERPIC -->
+				<!-- <div class="profile-userpic">
+					<img src="img/arturo.png" class="img-responsive" height="20" alt="">
+				</div> -->
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div ng-show="loginedIn" class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						Arturo Montoya
+					</div>
+					<div class="profile-usertitle-job">
+						Teacher
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="">
+					<a href="/checkin" type="button" class="btn btn-success btn-sm">C-In</a>
+					<a href="/checkout" type="button" class="btn btn-danger btn-sm">C-Out</a>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class=""><!-- active -->
+							<a href="/">
+							<i class="fa fa-home"></i>
+							Overview </a>
+						</li>
+						<li >
+							<a href="/checkinSummary">
+							<i class="fa fa-user"></i>
+							Today's Attendence </a>
+						</li>
+						<li >
+							<a href="/attendenceReports">
+							<i class="fa fa-user"></i>
+							Weekly Reports </a>
+						</li>
+						<li >
+							<a href="/studentRecords">
+							<i class="fa fa-user"></i>
+							Student Records </a>
+						</li>
+						<li >
+							<a href="/checkinSummary">
+							<i class="fa fa-user"></i>
+							Today's Attendence </a>
+						</li>
+						<li >
+							<a href="/contact">
+							<i class="fa fa-flag"></i>
+							Help </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		
+	</div>
+</div>
+		</ul>
+	</div>
+
+<!--        Modal for sub-set of Students    Modal for sub-set of Students-->   
+<script type="text/ng-template" id="loginModal.html">
+<div class="modal-header well">
+            <h3 class="modal-title text-center"><button class="btn btn-sm btn-danger pull-left" ng-click="cancel()">x</button> Login</h3>
+        </div>
+
+	<div class="modal-body " >
+		<div class="row">
+    	<div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6" >
+			<div class="form-group">
+	            <input type="text" class="form-control" placeholder="User Name" ng-model="user" />
+	            <br>
+	            <input type="password" class="form-control" placeholder="Password" ng-model="password" />
+	          </div>
+			<div class="wrapper">
+				<span class="group-btn">     
+					<a ng-click="login()" class="btn btn-primary btn-md pull-right">login <i class="fa fa-sign-in"></i></a>
+				</span>
+			</div>
+			</div>
+			</div>
+	</div>
+	<br><br>
+	<div ng-show="loggingIn" class="alert alert-success" role="alert">
+                    <i class="fa fa-spinner fa-spin"></i> &nbsp;Logging In
+                  </div>
+                  <div ng-show="loginErrors" class="alert alert-danger" role="alert">
+                    <i class="fa fa-exclamation-triangle"></i> &nbsp;{{loginErrors}}
+                  </div>
+	
+
+
+
+</script> 

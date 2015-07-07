@@ -1,0 +1,76 @@
+<br>
+<div class="container-fluid">
+
+	<!-- <div class=" row">
+		<h3 class="text-center"> Woodside High School  </h3>          
+	</div> -->
+	<div class=" row">
+		<a ng-click='refreshDataButton()' class="btn btn-default btn-sm pull-left"><i class="fa fa-refresh"></i>&nbsp;Refresh</a>
+		<a ng-click='downloadButton()' class="btn btn-default btn-sm pull-right"><i class="fa fa-download"></i>&nbsp;Download</a>
+		<br>
+		<h4 class="text-center"><i class="fa  fa-book"></i>&nbsp; Time Stamps &nbsp; </h4>
+	</div> 
+	<div class=" row">
+	<div class="well well-sm col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div google-chart chart="chartObject" style="{{cssStyle}}" custom-select="handleSelect"></div>
+	</div>
+<!-- Start -->
+
+
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<span class="badge">{{totalCheckedIn}}</span>
+				Checked-In Students
+
+			</li>
+			<li class="list-group-item">
+				<span class="badge">{{totalCheckedOut}}</span>
+				Checked-Out Students
+			</li>
+			<!-- <li class="list-group-item">
+				<span class="badge">{{total - totalCheckedIn}}</span>
+				Not Checked-In
+			</li> -->
+		</ul>
+
+
+	</div>
+
+	<!-- End -->
+	</div>
+	
+
+
+
+
+
+
+	<div class="well well-sm row">
+		<div class=" col-lg-12">
+
+			
+
+
+			<!-- <h5 class="text-center">Last Checked-in &nbsp; <button class="btn btn-success btn-sm" type="button">View All</button></h5> -->
+			<table class="table table-striped  ">
+				<thead>
+					<tr >
+						<th class="text-center">Student</th>
+						<th class="text-center">&nbsp;</th>
+						<th class="text-center">Check-in</th>
+						<th class="text-center">Check-out</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat="student in students | orderBy: '-checkinTime'"><!-- Hello-->
+						<td class="text-center">{{student.lastName}}</td>
+						<td class="text-center">{{student.firstName}}</td>
+						<td class="text-center">{{student.checkinTime}}</td>
+						<td class="text-center">{{student.checkoutTime}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
