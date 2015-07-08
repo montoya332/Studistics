@@ -59,13 +59,6 @@
 
               <i class="fa fa-phone-square">&nbsp;Phone:</i>
             </li>
-      <!-- <li class="list-group-item">
-          <input ng-show="editButton " ng-model="selectedStudent.joinedDate" type="text" class="form-control input-sm">
-            <span ng-hide="editButton" class="pull-right">{{selectedStudent.joinedDate}}</span>
-
-          <i class="fa fa-calendar-o">&nbsp;Joined</i>
-
-        </li> -->
       </ul>
     </div>
   </div>
@@ -91,23 +84,18 @@
 </div>
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
  <div class="panel panel-primary ">
-  <div class="panel-heading text-center">Attendence &nbsp;<span class="badge">n/a</span></div>
+  <div class="panel-heading text-center">Info &nbsp;</div>
   <ul class="list-group">
    <li class="list-group-item">
-    <span class="badge">n/a</span>
-    <i class="fa fa-check-square">&nbsp;Attended</i>
-
+    <input ng-show="editButton " ng-model="selectedStudent.studentId" type="text" class="form-control input-sm">
+        <span ng-hide="editButton" class="pull-right">{{selectedStudent.studentId}}</span>
+        <i class="fa fa-phone-user">&nbsp;Student Id:</i>
   </li>
   <li class="list-group-item">
-    <span class="badge">n/a</span>
-
-    <i class="fa fa-exclamation-triangle"></i>&nbsp;Missed
+    <input ng-show="editButton " ng-model="selectedStudent.dob" type="text" class="form-control input-sm">
+        <span ng-hide="editButton" class="pull-right">{{selectedStudent.dob}}</span>
+        <i class="fa fa-phone-user">&nbsp;DOB:</i>
   </li>
-  <!-- <li class="list-group-item">
-      <span class="badge">3</span>
-
-      <i class="fa fa-check-square-o"></i>&nbsp;Average
-    </li> -->
   </ul>
 </div>
 </div>
@@ -167,449 +155,258 @@
           </tr>
         </thead>   
         <tbody ng-show="selectedGradeNum == 7">
-         <tr >
-          <td>Math</td>
-          <td >
-            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.math1">
+        <tr ng-repeat="subject in selectedStudent.grades.seventh track by $index">
+            <td class="">
+              {{subject.name}}
+            </td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade">
               <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
             </select>
-            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.math1}}</span></td>
-            <td>
-              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.math2">
-                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-              </select>
-              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.math2}}</span></td>
-              <td><span class="{{checkImprovement(selectedStudent.grades.seventh.math1,selectedStudent.grades.seventh.math2).label}}">{{checkImprovement(selectedStudent.grades.seventh.math1,selectedStudent.grades.seventh.math2).result}}</span>
-              </td>                                       
-            </tr>
-            <tr>
-              <td>Art</td>
-              <td>
-                <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.art1">
-                  <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                </select>
-                <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.art1}}</span></td>
-                <td>
-                  <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.art2">
-                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                  </select>
-                  <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.art2}}</span></td>
-                  <td><span class="{{checkImprovement(selectedStudent.grades.seventh.art1,selectedStudent.grades.seventh.art2).label}}">{{checkImprovement(selectedStudent.grades.seventh.art1,selectedStudent.grades.seventh.art2).result}}</span></td>                                       
-                </tr>
-                <tr>
-                  <td>English</td>
-                  <td>
-                    <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.english1">
-                      <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                    </select>
-                    <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.english1}}</span></td>
-                    <td>
-                      <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.english2">
-                        <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                      </select>
-                      <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.english2}}</span></td>
-                      <td><span class="{{checkImprovement(selectedStudent.grades.seventh.english1,selectedStudent.grades.seventh.english2).label}}">{{checkImprovement(selectedStudent.grades.seventh.english1,selectedStudent.grades.seventh.english2).result}}</span></td>                                        
-                    </tr>
-                    <tr>
-                      <td>Science</td>
-                      <td>
-                        <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.science1">
-                          <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                        </select>
-                        <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.science1}}</span></td>
-                        <td>
-                          <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.science2">
-                            <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                          </select>
-                          <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.science2}}</span></td>
-                          <td><span class="{{checkImprovement(selectedStudent.grades.seventh.science1,selectedStudent.grades.seventh.science2).label}}">{{checkImprovement(selectedStudent.grades.seventh.science1,selectedStudent.grades.seventh.science2).result}}</span></td>                                       
-                        </tr>
-                        <tr>
-                          <td>P.E.</td>
-                          <td>
-                            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.pe1">
-                              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                            </select>
-                            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.pe1}}</span></td>
-                            <td>
-                              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.seventh.pe2">
-                                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                              </select>
-                              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.seventh.pe2}}</span></td>
-                              <td><span class="{{checkImprovement(selectedStudent.grades.seventh.pe1,selectedStudent.grades.seventh.pe2).label}}">{{checkImprovement(selectedStudent.grades.seventh.pe1,selectedStudent.grades.seventh.pe2).result}}</span></td>                                        
-                            </tr>                                   
-                          </tbody>
-         <!--      sdfg sdfg sdfgsdfgfsdg       -->
-                          <tbody ng-show="selectedGradeNum == 8">
-         <tr >
-          <td>Math</td>
-          <td >
-            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.math1">
+            <span ng-hide="editButton" class="text-center">{{subject.grade}}</span></td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade2">
               <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
             </select>
-            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.math1}}</span></td>
-            <td>
-              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.math2">
-                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            <span ng-hide="editButton" class="text-center">{{subject.grade2}}</span></td>
+            <td><span class="{{checkImprovement(subject.grade,subject.grade2).label}}">{{checkImprovement(subject.grade,subject.grade2).result}}</span>
+              </td>
+          </tr>
+          <tr ng-show="editButton && selectedStudent.grades.seventh.length < 5">
+            <td class="">
+              <select class="form-control" ng-model="newSubject.name">
+                <option value="Math"> Math </option><option value="Art"> Art </option><option value="English"> English </option><option value="Science"> Science </option><option value="PE"> PE </option>
               </select>
-              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.math2}}</span></td>
-              <td><span class="{{checkImprovement(selectedStudent.grades.eighth.math1,selectedStudent.grades.eighth.math2).label}}">{{checkImprovement(selectedStudent.grades.eighth.math1,selectedStudent.grades.eighth.math2).result}}</span>
-              </td>                                       
-            </tr>
-            <tr>
-              <td>Art</td>
-              <td>
-                <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.art1">
-                  <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                </select>
-                <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.art1}}</span></td>
-                <td>
-                  <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.art2">
+            </td>
+            <td class="">
+                <select  class="form-control" ng-model="newSubject.grade">
                     <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
                   </select>
-                  <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.art2}}</span></td>
-                  <td><span class="{{checkImprovement(selectedStudent.grades.eighth.art1,selectedStudent.grades.eighth.art2).label}}">{{checkImprovement(selectedStudent.grades.eighth.art1,selectedStudent.grades.eighth.art2).result}}</span></td>                                       
-                </tr>
-                <tr>
-                  <td>English</td>
-                  <td>
-                    <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.english1">
-                      <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                    </select>
-                    <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.english1}}</span></td>
-                    <td>
-                      <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.english2">
-                        <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                      </select>
-                      <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.english2}}</span></td>
-                      <td><span class="{{checkImprovement(selectedStudent.grades.eighth.english1,selectedStudent.grades.eighth.english2).label}}">{{checkImprovement(selectedStudent.grades.eighth.english1,selectedStudent.grades.eighth.english2).result}}</span></td>                                        
-                    </tr>
-                    <tr>
-                      <td>Science</td>
-                      <td>
-                        <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.science1">
-                          <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                        </select>
-                        <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.science1}}</span></td>
-                        <td>
-                          <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.science2">
-                            <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                          </select>
-                          <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.science2}}</span></td>
-                          <td><span class="{{checkImprovement(selectedStudent.grades.eighth.science1,selectedStudent.grades.eighth.science2).label}}">{{checkImprovement(selectedStudent.grades.eighth.science1,selectedStudent.grades.eighth.science2).result}}</span></td>                                       
-                        </tr>
-                        <tr>
-                          <td>P.E.</td>
-                          <td>
-                            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.pe1">
-                              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                            </select>
-                            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.pe1}}</span></td>
-                            <td>
-                              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eighth.pe2">
-                                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                              </select>
-                              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eighth.pe2}}</span></td>
-                              <td><span class="{{checkImprovement(selectedStudent.grades.eighth.pe1,selectedStudent.grades.eighth.pe2).label}}">{{checkImprovement(selectedStudent.grades.eighth.pe1,selectedStudent.grades.eighth.pe2).result}}</span></td>                                        
-                            </tr>                                   
+                  </td>
+              <td class="">
+                <select class="form-control" ng-model="newSubject.grade2">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+                  <td class="">
+                    <button class="btn btn-default btn-sm pull-right" ng-click="saveNewSubject('seventh')">
+                    > </button>
+                  </td>
+            
+          </tr>                             
                           </tbody>
-        <!--      sdfg sdfg sdfgsdfgfsdg       -->
-                          <tbody ng-show="selectedGradeNum == 9">
-         <tr >
-          <td>Math</td>
-          <td >
-            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.math1">
+         <!--      Grade      -->
+         <tbody ng-show="selectedGradeNum == 8">
+        <tr ng-repeat="subject in selectedStudent.grades.eighth track by $index">
+            <td class="">
+              {{subject.name}}
+            </td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade">
               <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
             </select>
-            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.math1}}</span></td>
-            <td>
-              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.math2">
-                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-              </select>
-              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.math2}}</span></td>
-              <td><span class="{{checkImprovement(selectedStudent.grades.ninth.math1,selectedStudent.grades.ninth.math2).label}}">{{checkImprovement(selectedStudent.grades.ninth.math1,selectedStudent.grades.ninth.math2).result}}</span>
-              </td>                                       
-            </tr>
-            <tr>
-              <td>Art</td>
-              <td>
-                <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.art1">
-                  <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                </select>
-                <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.art1}}</span></td>
-                <td>
-                  <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.art2">
-                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                  </select>
-                  <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.art2}}</span></td>
-                  <td><span class="{{checkImprovement(selectedStudent.grades.ninth.art1,selectedStudent.grades.ninth.art2).label}}">{{checkImprovement(selectedStudent.grades.ninth.art1,selectedStudent.grades.ninth.art2).result}}</span></td>                                       
-                </tr>
-                <tr>
-                  <td>English</td>
-                  <td>
-                    <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.english1">
-                      <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                    </select>
-                    <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.english1}}</span></td>
-                    <td>
-                      <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.english2">
-                        <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                      </select>
-                      <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.english2}}</span></td>
-                      <td><span class="{{checkImprovement(selectedStudent.grades.ninth.english1,selectedStudent.grades.ninth.english2).label}}">{{checkImprovement(selectedStudent.grades.ninth.english1,selectedStudent.grades.ninth.english2).result}}</span></td>                                        
-                    </tr>
-                    <tr>
-                      <td>Science</td>
-                      <td>
-                        <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.science1">
-                          <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                        </select>
-                        <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.science1}}</span></td>
-                        <td>
-                          <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.science2">
-                            <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                          </select>
-                          <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.science2}}</span></td>
-                          <td><span class="{{checkImprovement(selectedStudent.grades.ninth.science1,selectedStudent.grades.ninth.science2).label}}">{{checkImprovement(selectedStudent.grades.ninth.science1,selectedStudent.grades.ninth.science2).result}}</span></td>                                       
-                        </tr>
-                        <tr>
-                          <td>P.E.</td>
-                          <td>
-                            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.pe1">
-                              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                            </select>
-                            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.pe1}}</span></td>
-                            <td>
-                              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.ninth.pe2">
-                                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                              </select>
-                              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.ninth.pe2}}</span></td>
-                              <td><span class="{{checkImprovement(selectedStudent.grades.ninth.pe1,selectedStudent.grades.ninth.pe2).label}}">{{checkImprovement(selectedStudent.grades.ninth.pe1,selectedStudent.grades.ninth.pe2).result}}</span></td>                                        
-                            </tr>                                   
-                          </tbody>
-                          <!--      sdfg sdfg sdfgsdfgfsdg       -->
-        <tbody ng-show="selectedGradeNum == 10">
-         <tr >
-          <td>Math</td>
-          <td >
-            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.math1">
+            <span ng-hide="editButton" class="text-center">{{subject.grade}}</span></td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade2">
               <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
             </select>
-            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.math1}}</span></td>
-            <td>
-              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.math2">
-                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            <span ng-hide="editButton" class="text-center">{{subject.grade2}}</span></td>
+            <td><span class="{{checkImprovement(subject.grade,subject.grade2).label}}">{{checkImprovement(subject.grade,subject.grade2).result}}</span>
+              </td>
+          </tr>
+          <tr ng-show="editButton && selectedStudent.grades.eighth.length < 5">
+            <td class="">
+              <select class="form-control" ng-model="newSubject.name">
+                <option value="Math"> Math </option><option value="Art"> Art </option><option value="English"> English </option><option value="Science"> Science </option><option value="PE"> PE </option>
               </select>
-              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.math2}}</span></td>
-              <td><span class="{{checkImprovement(selectedStudent.grades.tenth.math1,selectedStudent.grades.tenth.math2).label}}">{{checkImprovement(selectedStudent.grades.tenth.math1,selectedStudent.grades.tenth.math2).result}}</span>
-              </td>                                       
-            </tr>
-            <tr>
-              <td>Art</td>
-              <td>
-                <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.art1">
-                  <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                </select>
-                <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.art1}}</span></td>
-                <td>
-                  <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.art2">
+            </td>
+            <td class="">
+                <select  class="form-control" ng-model="newSubject.grade">
                     <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
                   </select>
-                  <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.art2}}</span></td>
-                  <td><span class="{{checkImprovement(selectedStudent.grades.tenth.art1,selectedStudent.grades.tenth.art2).label}}">{{checkImprovement(selectedStudent.grades.tenth.art1,selectedStudent.grades.tenth.art2).result}}</span></td>                                       
-                </tr>
-                <tr>
-                  <td>English</td>
-                  <td>
-                    <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.english1">
-                      <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                    </select>
-                    <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.english1}}</span></td>
-                    <td>
-                      <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.english2">
-                        <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                      </select>
-                      <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.english2}}</span></td>
-                      <td><span class="{{checkImprovement(selectedStudent.grades.tenth.english1,selectedStudent.grades.tenth.english2).label}}">{{checkImprovement(selectedStudent.grades.tenth.english1,selectedStudent.grades.tenth.english2).result}}</span></td>                                        
-                    </tr>
-                    <tr>
-                      <td>Science</td>
-                      <td>
-                        <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.science1">
-                          <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                        </select>
-                        <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.science1}}</span></td>
-                        <td>
-                          <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.science2">
-                            <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                          </select>
-                          <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.science2}}</span></td>
-                          <td><span class="{{checkImprovement(selectedStudent.grades.tenth.science1,selectedStudent.grades.tenth.science2).label}}">{{checkImprovement(selectedStudent.grades.tenth.science1,selectedStudent.grades.tenth.science2).result}}</span></td>                                       
-                        </tr>
-                        <tr>
-                          <td>P.E.</td>
-                          <td>
-                            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.pe1">
-                              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                            </select>
-                            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.pe1}}</span></td>
-                            <td>
-                              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.tenth.pe2">
-                                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                              </select>
-                              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.tenth.pe2}}</span></td>
-                              <td><span class="{{checkImprovement(selectedStudent.grades.tenth.pe1,selectedStudent.grades.tenth.pe2).label}}">{{checkImprovement(selectedStudent.grades.tenth.pe1,selectedStudent.grades.tenth.pe2).result}}</span></td>                                        
-                            </tr>                                   
+                  </td>
+              <td class="">
+                <select class="form-control" ng-model="newSubject.grade2">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+                  <td class="">
+                    <button class="btn btn-default btn-sm pull-right" ng-click="saveNewSubject('eighth')">
+                    > </button>
+                  </td>
+            
+          </tr>                             
                           </tbody>
-                          <!--      sdfg sdfg sdfgsdfgfsdg       -->
-        <tbody ng-show="selectedGradeNum == 11">
-         <tr >
-          <td>Math</td>
-          <td >
-            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.math1">
+         <!--      Grade      -->
+         <tbody ng-show="selectedGradeNum == 9">
+        <tr ng-repeat="subject in selectedStudent.grades.ninth track by $index">
+            <td class="">
+              {{subject.name}}
+            </td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade">
               <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
             </select>
-            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.math1}}</span></td>
-            <td>
-              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.math2">
-                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-              </select>
-              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.math2}}</span></td>
-              <td><span class="{{checkImprovement(selectedStudent.grades.eleventh.math1,selectedStudent.grades.eleventh.math2).label}}">{{checkImprovement(selectedStudent.grades.eleventh.math1,selectedStudent.grades.eleventh.math2).result}}</span>
-              </td>                                       
-            </tr>
-            <tr>
-              <td>Art</td>
-              <td>
-                <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.art1">
-                  <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                </select>
-                <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.art1}}</span></td>
-                <td>
-                  <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.art2">
-                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                  </select>
-                  <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.art2}}</span></td>
-                  <td><span class="{{checkImprovement(selectedStudent.grades.eleventh.art1,selectedStudent.grades.eleventh.art2).label}}">{{checkImprovement(selectedStudent.grades.eleventh.art1,selectedStudent.grades.eleventh.art2).result}}</span></td>                                       
-                </tr>
-                <tr>
-                  <td>English</td>
-                  <td>
-                    <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.english1">
-                      <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                    </select>
-                    <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.english1}}</span></td>
-                    <td>
-                      <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.english2">
-                        <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                      </select>
-                      <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.english2}}</span></td>
-                      <td><span class="{{checkImprovement(selectedStudent.grades.eleventh.english1,selectedStudent.grades.eleventh.english2).label}}">{{checkImprovement(selectedStudent.grades.eleventh.english1,selectedStudent.grades.eleventh.english2).result}}</span></td>                                        
-                    </tr>
-                    <tr>
-                      <td>Science</td>
-                      <td>
-                        <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.science1">
-                          <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                        </select>
-                        <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.science1}}</span></td>
-                        <td>
-                          <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.science2">
-                            <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                          </select>
-                          <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.science2}}</span></td>
-                          <td><span class="{{checkImprovement(selectedStudent.grades.eleventh.science1,selectedStudent.grades.eleventh.science2).label}}">{{checkImprovement(selectedStudent.grades.eleventh.science1,selectedStudent.grades.eleventh.science2).result}}</span></td>                                       
-                        </tr>
-                        <tr>
-                          <td>P.E.</td>
-                          <td>
-                            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.pe1">
-                              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                            </select>
-                            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.pe1}}</span></td>
-                            <td>
-                              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.eleventh.pe2">
-                                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                              </select>
-                              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.eleventh.pe2}}</span></td>
-                              <td><span class="{{checkImprovement(selectedStudent.grades.eleventh.pe1,selectedStudent.grades.eleventh.pe2).label}}">{{checkImprovement(selectedStudent.grades.eleventh.pe1,selectedStudent.grades.eleventh.pe2).result}}</span></td>                                        
-                            </tr>                                   
-                          </tbody>
-                          <!--      sdfg sdfg sdfgsdfgfsdg       -->
-                                  <tbody ng-show="selectedGradeNum == 12">
-         <tr >
-          <td>Math</td>
-          <td >
-            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.math1">
+            <span ng-hide="editButton" class="text-center">{{subject.grade}}</span></td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade2">
               <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
             </select>
-            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.math1}}</span></td>
-            <td>
-              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.math2">
-                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            <span ng-hide="editButton" class="text-center">{{subject.grade2}}</span></td>
+            <td><span class="{{checkImprovement(subject.grade,subject.grade2).label}}">{{checkImprovement(subject.grade,subject.grade2).result}}</span>
+              </td>
+          </tr>
+          <tr ng-show="editButton && selectedStudent.grades.ninth.length < 5">
+            <td class="">
+              <select class="form-control" ng-model="newSubject.name">
+                <option value="Math"> Math </option><option value="Art"> Art </option><option value="English"> English </option><option value="Science"> Science </option><option value="PE"> PE </option>
               </select>
-              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.math2}}</span></td>
-              <td><span class="{{checkImprovement(selectedStudent.grades.twelfth.math1,selectedStudent.grades.twelfth.math2).label}}">{{checkImprovement(selectedStudent.grades.twelfth.math1,selectedStudent.grades.twelfth.math2).result}}</span>
-              </td>                                       
-            </tr>
-            <tr>
-              <td>Art</td>
-              <td>
-                <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.art1">
-                  <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                </select>
-                <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.art1}}</span></td>
-                <td>
-                  <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.art2">
+            </td>
+            <td class="">
+                <select  class="form-control" ng-model="newSubject.grade">
                     <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
                   </select>
-                  <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.art2}}</span></td>
-                  <td><span class="{{checkImprovement(selectedStudent.grades.twelfth.art1,selectedStudent.grades.twelfth.art2).label}}">{{checkImprovement(selectedStudent.grades.twelfth.art1,selectedStudent.grades.twelfth.art2).result}}</span></td>                                       
-                </tr>
-                <tr>
-                  <td>English</td>
-                  <td>
-                    <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.english1">
-                      <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                    </select>
-                    <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.english1}}</span></td>
-                    <td>
-                      <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.english2">
-                        <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                      </select>
-                      <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.english2}}</span></td>
-                      <td><span class="{{checkImprovement(selectedStudent.grades.twelfth.english1,selectedStudent.grades.twelfth.english2).label}}">{{checkImprovement(selectedStudent.grades.twelfth.english1,selectedStudent.grades.twelfth.english2).result}}</span></td>                                        
-                    </tr>
-                    <tr>
-                      <td>Science</td>
-                      <td>
-                        <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.science1">
-                          <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                        </select>
-                        <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.science1}}</span></td>
-                        <td>
-                          <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.science2">
-                            <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                          </select>
-                          <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.science2}}</span></td>
-                          <td><span class="{{checkImprovement(selectedStudent.grades.twelfth.science1,selectedStudent.grades.twelfth.science2).label}}">{{checkImprovement(selectedStudent.grades.twelfth.science1,selectedStudent.grades.twelfth.science2).result}}</span></td>                                       
-                        </tr>
-                        <tr>
-                          <td>P.E.</td>
-                          <td>
-                            <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.pe1">
-                              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                            </select>
-                            <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.pe1}}</span></td>
-                            <td>
-                              <select ng-show="editButton" class="form-control" ng-model="selectedStudent.grades.twelfth.pe2">
-                                <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
-                              </select>
-                              <span ng-hide="editButton" class="text-center">{{selectedStudent.grades.twelfth.pe2}}</span></td>
-                              <td><span class="{{checkImprovement(selectedStudent.grades.twelfth.pe1,selectedStudent.grades.twelfth.pe2).label}}">{{checkImprovement(selectedStudent.grades.twelfth.pe1,selectedStudent.grades.twelfth.pe2).result}}</span></td>                                        
-                            </tr>                                   
+                  </td>
+              <td class="">
+                <select class="form-control" ng-model="newSubject.grade2">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+                  <td class="">
+                    <button class="btn btn-default btn-sm pull-right" ng-click="saveNewSubject('ninth')">
+                    > </button>
+                  </td>
+            
+          </tr>                             
                           </tbody>
-                          <!--      sdfg sdfg sdfgsdfgfsdg       -->
+         <!--      Grade      -->
+         <tbody ng-show="selectedGradeNum == 10">
+        <tr ng-repeat="subject in selectedStudent.grades.tenth track by $index">
+            <td class="">
+              {{subject.name}}
+            </td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade">
+              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            </select>
+            <span ng-hide="editButton" class="text-center">{{subject.grade}}</span></td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade2">
+              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            </select>
+            <span ng-hide="editButton" class="text-center">{{subject.grade2}}</span></td>
+            <td><span class="{{checkImprovement(subject.grade,subject.grade2).label}}">{{checkImprovement(subject.grade,subject.grade2).result}}</span>
+              </td>
+          </tr>
+          <tr ng-show="editButton && selectedStudent.grades.tenth.length < 5">
+            <td class="">
+              <select class="form-control" ng-model="newSubject.name">
+                <option value="Math"> Math </option><option value="Art"> Art </option><option value="English"> English </option><option value="Science"> Science </option><option value="PE"> PE </option>
+              </select>
+            </td>
+            <td class="">
+                <select  class="form-control" ng-model="newSubject.grade">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+              <td class="">
+                <select class="form-control" ng-model="newSubject.grade2">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+                  <td class="">
+                    <button class="btn btn-default btn-sm pull-right" ng-click="saveNewSubject('tenth')">
+                    > </button>
+                  </td>
+            
+          </tr>                             
+                          </tbody>
+         <!--      Grade      -->
+         <tbody ng-show="selectedGradeNum == 11">
+        <tr ng-repeat="subject in selectedStudent.grades.eleventh track by $index">
+            <td class="">
+              {{subject.name}}
+            </td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade">
+              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            </select>
+            <span ng-hide="editButton" class="text-center">{{subject.grade}}</span></td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade2">
+              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            </select>
+            <span ng-hide="editButton" class="text-center">{{subject.grade2}}</span></td>
+            <td><span class="{{checkImprovement(subject.grade,subject.grade2).label}}">{{checkImprovement(subject.grade,subject.grade2).result}}</span>
+              </td>
+          </tr>
+          <tr ng-show="editButton && selectedStudent.grades.eleventh.length < 5">
+            <td class="">
+              <select class="form-control" ng-model="newSubject.name">
+                <option value="Math"> Math </option><option value="Art"> Art </option><option value="English"> English </option><option value="Science"> Science </option><option value="PE"> PE </option>
+              </select>
+            </td>
+            <td class="">
+                <select  class="form-control" ng-model="newSubject.grade">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+              <td class="">
+                <select class="form-control" ng-model="newSubject.grade2">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+                  <td class="">
+                    <button class="btn btn-default btn-sm pull-right" ng-click="saveNewSubject('eleventh')">
+                    > </button>
+                  </td>
+            
+          </tr>                             
+                          </tbody>
+         <!--      Grade      -->
+         <tbody ng-show="selectedGradeNum == 12">
+        <tr ng-repeat="subject in selectedStudent.grades.twelfth track by $index">
+            <td class="">
+              {{subject.name}}
+            </td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade">
+              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            </select>
+            <span ng-hide="editButton" class="text-center">{{subject.grade}}</span></td>
+            <td >
+            <select ng-show="editButton" class="form-control" ng-model="subject.grade2">
+              <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+            </select>
+            <span ng-hide="editButton" class="text-center">{{subject.grade2}}</span></td>
+            <td><span class="{{checkImprovement(subject.grade,subject.grade2).label}}">{{checkImprovement(subject.grade,subject.grade2).result}}</span>
+              </td>
+          </tr>
+          <tr ng-show="editButton && selectedStudent.grades.twelfth.length < 5">
+            <td class="">
+              <select class="form-control" ng-model="newSubject.name">
+                <option value="Math"> Math </option><option value="Art"> Art </option><option value="English"> English </option><option value="Science"> Science </option><option value="PE"> PE </option>
+              </select>
+            </td>
+            <td class="">
+                <select  class="form-control" ng-model="newSubject.grade">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+              <td class="">
+                <select class="form-control" ng-model="newSubject.grade2">
+                    <option value="A"> A </option><option value="B"> B </option><option value="C"> C </option><option value="D"> D </option><option value="F"> F </option>
+                  </select>
+                  </td>
+                  <td class="">
+                    <button class="btn btn-default btn-sm pull-right" ng-click="saveNewSubject('twelfth')">
+                    > </button>
+                  </td>
+            
+          </tr>                             
+                          </tbody>
+         <!--      Grade      -->
+        
                         </table>
                       </div>
                     </div>
@@ -618,10 +415,12 @@
 
                   <div class="row">
                     <div class="col-sm-12 col-md-6 well well-sm">
-                      <span class="pull-right"><button ng-show="true" class="btn btn-warning btn-sm" type="submit">View all Posts</button></span>
+                      <h5>Top 2 Reports<!-- <span class="pull-right"><button ng-show="true" class="btn btn-warning btn-sm" type="submit">View all Posts</button></span> --></h5>
                       <blockquote ng-repeat="note in selectedStudent.notes | orderBy:'$index':reverse  | limitTo:2 ">  <!-- |limitTo:2 -->
                         <p>{{note.message}}</p>
-                        <small>{{note.dateCreated | date:'MM/dd/yyyy'}} <cite title="Source Title"> Reported : Arturo , Montoya </cite></small>
+                        <small>{{note.dateCreated | date:'MM/dd/yyyy'}} 
+                        <!-- <cite title="Source Title"> Reported : Arturo , Montoya </cite> -->
+                        </small>
                       </blockquote>
                     </div>
                     <div class="col-sm-12 col-md-6">
@@ -709,21 +508,17 @@
 
                 <!--        Modal for sub-set of Students    Modal for sub-set of Students-->   
 <script type="text/ng-template" id="loggedPostsModal.html">
-<div class="modal-header well">
-            <h3 class="modal-title text-center"><button class="btn btn-sm btn-danger pull-left" ng-click="cancel()">x</button> Posts</h3>
-        </div>
+    <div class="modal-header well">
+                <h3 class="modal-title text-center"><button class="btn btn-sm btn-danger pull-left" ng-click="cancel()">x</button> Posts</h3>
+            </div>
 
-  <div class="modal-body " >
-    <div class="col-sm-12">
-                      <blockquote ng-repeat="note in selectedStudent.notes | orderBy:'$index':reverse ">  <!-- |limitTo:2 -->
-                        <p>{{note.message}}</p>
-                        <small>{{note.dateCreated | date:'MM/dd/yyyy'}} <cite title="Source Title"> Reported : Arturo , Montoya </cite></small>
-                      </blockquote>
-                    </div>
-  </div>
-  <br><br>
-  
-
-
-
+      <div class="modal-body " >
+        <div class="col-sm-12">
+                          <blockquote ng-repeat="note in selectedStudent.notes | orderBy:'$index':reverse ">  <!-- |limitTo:2 -->
+                            <p>{{note.message}}</p>
+                            <small>{{note.dateCreated | date:'MM/dd/yyyy'}} <cite title="Source Title"> Reported : Arturo , Montoya </cite></small>
+                          </blockquote>
+                        </div>
+      </div>
+      <br><br>
 </script> 

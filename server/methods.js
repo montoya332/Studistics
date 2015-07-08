@@ -13,7 +13,7 @@ Meteor.methods({
         }
       },
   updateStudentInfo: function (params) {
-      console.log("updateStudentInfo:", params);
+      console.log("updateStudentInfo:", params.grades.seventh);
       if (this.userId) {// TODO: if (this.userId) {
        Students.update( { _id: params._id  }, {
               $set: {email: params.email,
@@ -27,9 +27,11 @@ Meteor.methods({
                       g2email: params.g2email,
                       g2name: params.g2name,
                       g2phone: params.g2phone,
+                      studentId:params.studentId,
+                      dob: params.dob,
                       joinedDate: params.joinedDate}
             });
-       console.log("Update:", params);;
+       console.log("Update:", params);
       } else {        
         return null;              
         }
@@ -55,13 +57,27 @@ Meteor.methods({
       if (this.userId) {// TODO: if (this.userId) {
       return Students.find({
      $and: [
-     //{studentId: {$regex: '^'+params.studentId, $options: 'i'}},
+     {studentId: {$regex: '^'+params.studentId, $options: 'i'}},
      {firstName: {$regex: '^'+params.firstName, $options: 'i'}},
      {lastName: {$regex: '^'+params.lastName, $options: 'i'}}
      ]
    },{
      limit: 10
     },{sort: {lastName: 1, firstName: 1}}).fetch();
+      } else {        
+        return null;              
+        }
+      },
+  getStudentRecord: function (params) {
+    console.log("getStudentRecords");
+      if (this.userId) {
+      return Students.findOne({
+     $and: [
+     {studentId: {$regex: '^'+params.studentId, $options: 'i'}},
+     {firstName: {$regex: '^'+params.firstName, $options: 'i'}},
+     {lastName: {$regex: '^'+params.lastName, $options: 'i'}}
+     ]
+      })
       } else {        
         return null;              
         }

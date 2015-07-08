@@ -14,15 +14,15 @@ if (Meteor.isServer) {
         var id =  "S"+([i]%12).toString()+([i]%28).toString()+"12";
         for (j = 1; j < 11; j++) { 
         var lastname = (lastnames[j%10]).toString();
-        Students.insert({ "notes":[],"grades":{"seventh":{},"eighth":{},"ninth":{},"tenth":{},"eleventh":{},"twelfth":{}},"studentId":id,"firstName":firstname, "lastName":lastname, "dob":dob });
-        var temp = Students.findOne({"studentId":id,"firstName":firstname, "lastName":lastname});
-        Attendances.update({"date":dt},
-          { $push: { "students": { "SID":temp._id,"checkedIn":time,"checkedOut":time } } })
-        ReportCards.insert({"SID":temp._id,
-                            "grades":{"seventh":[{"math":"A","history":"A","science":"A","pe":"A"}],
-                            "eighth":[{"math":"B","history":"A","science":"A","pe":"A"}], "ninth":[{"math":"C","history":"A","science":"A","pe":"A"}],"tenth":[{"math":"A","history":"A","science":"A","pe":"A"}],
-                            "eleventh":[{"math":"B","history":"A","science":"A","pe":"A"}], "twelfth":[{"math":"A","history":"C","science":"A","pe":"A"}]} 
-                          });
+        Students.insert({ "notes":[],"grades":{"seventh":[],"eighth":[],"ninth":[],"tenth":[],"eleventh":[],"twelfth":[]},"studentId":id,"firstName":firstname, "lastName":lastname, "dob":dob });
+        // var temp = Students.findOne({"studentId":id,"firstName":firstname, "lastName":lastname});
+        // Attendances.update({"date":dt},
+        //   { $push: { "students": { "SID":temp._id,"checkedIn":time,"checkedOut":time } } })
+        // ReportCards.insert({"SID":temp._id,
+        //                     "grades":{"seventh":[{"math":"A","history":"A","science":"A","pe":"A"}],
+        //                     "eighth":[{"math":"B","history":"A","science":"A","pe":"A"}], "ninth":[{"math":"C","history":"A","science":"A","pe":"A"}],"tenth":[{"math":"A","history":"A","science":"A","pe":"A"}],
+        //                     "eleventh":[{"math":"B","history":"A","science":"A","pe":"A"}], "twelfth":[{"math":"A","history":"C","science":"A","pe":"A"}]} 
+        //                   });
 
 
         }
@@ -38,8 +38,8 @@ if (Meteor.isServer) {
            }
          });
     //console.log("Students",Students.findOne());
-    console.log("Attendances",Attendances.findOne());
-    console.log("ReportCards",ReportCards.findOne().grades);
+    //console.log("Attendances",Attendances.findOne());
+    //console.log("ReportCards",ReportCards.findOne().grades);
   }
     
     // else {console.log("Created Some test Events",Students.find({}).fetch())}

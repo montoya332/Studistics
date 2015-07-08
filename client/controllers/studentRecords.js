@@ -6,18 +6,28 @@ angular.module("studentTracker").controller("StudentRecordsCtrl", ['$scope', '$m
     $scope.selectedStudent = {};
     $scope.params ={};
     $scope.message ="";
+    $scope.newSubject = {name:"",grade:"",grade2:""};
     $scope.params.firstName = $scope.params.lastName = $scope.params.studentId ="";
-    $meteor.subscribe("getStudents", $stateParams.studentId).then(function(subscriptionHandle){
-          $scope.selectedStudent = Students.findOne({});
-          $scope.selectedGradeNum = 7;
-          console.log("Student: ",$scope.selectedStudent)
-          $scope.$on('$destroy',function(){
-            subscriptionHandle.stop();
-          }); 
-        });
-    // $meteor.autorun($scope, function() {
-    //   $scope.selectedGrade = $scope.selectedGrade;
-    // });
+    $meteor.call('getStudentRecord',  {firstName:$scope.params.firstName,lastName:$scope.params.lastName,studentId: $scope.params.studentId}).then(
+        function(data){
+      // Handle success
+      $scope.selectedStudent = data;
+      $scope.selectedGradeNum = 7;
+      console.log("Student: ",$scope.selectedStudent)
+      console.log("Student: ",$scope.selectedStudent.grades)
+    },
+      function(err){
+        // Handle error
+        console.log('failed', err);
+      });
+    
+    $scope.saveNewSubject = function(grade){
+      var obj =  $scope.newSubject;  //{"name":$scope.newSubject.name,"grade":$scope.newSubject.grade,"grade2":$scope.newSubject.grade2};
+      if ($scope.newSubject.name){
+          $scope.selectedStudent.grades[grade].push(obj);
+          $scope.newSubject = {name:"",grade:"",grade2:""};
+          }
+      };
     $scope.toggleEdit = function(){
              $scope.editButton = $scope.editButton?me.save():true;
              console.log("Clicked Button",$scope.editButton)

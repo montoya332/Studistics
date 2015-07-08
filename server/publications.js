@@ -11,6 +11,15 @@ Meteor.publish('getStudents',
       }
     }
     );
+Meteor.publish('getStudentRecords',
+  function (params) {
+    if (true) {// TODO: if (this.userId) {
+      return ReportCards.find({ });
+    } else {        
+      return null;              
+      }
+    }
+    );
 Meteor.publish('getStudent',
   function (studentId) {
     console.log("Publish Students  Id: ",studentId);
